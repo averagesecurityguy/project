@@ -1,2 +1,2 @@
-# tornadotemplate
-A template for a basic Tornado application.
+# Project
+Template for a basic Tornado application.
