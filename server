@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import tornado.ioloop
+import logging
+import os
+
+import project.webserver
+
+
+SERVER = '0.0.0.0'
+PORT = 8000
+LOG_LEVEL = logging.INFO
+
+#-----------------------------------------------------------------------------
+# Do not edit anything below this line.
+#-----------------------------------------------------------------------------
+
+try:
+    os.mkdir('log')
+except OSError:
+    # Log directory already exists
+    pass
+
+log_file = os.path.join('opt', 'project', 'project', 'project.log')
+
+logging.basicConfig(
+    level=LOG_LEVEL,
+    filename=log_file)
+
+console = logging.StreamHandler()
+console.setLevel(logging.ERROR)
+formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+console.setFormatter(formatter)
+logging.getLogger('').addHandler(console)
+
+logging.info('Starting Project server.')
+print('Starting Project server on {0}:{1}'.format(SERVER, PORT))
+
+
+if __name__ == "__main__":
+    app = project.webserver.app
+    app.listen(PORT)
+    tornado.ioloop.IOLoop.current().start()

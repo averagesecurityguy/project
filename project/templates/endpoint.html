@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block data %}
+
+<h2>This is the enpoint page.</h2>
+{% if data is not None %}
+{% for d in data %}
+<p>{{ d }}</p>
+{% end %}
+{% end %}
+
+{% end %}
